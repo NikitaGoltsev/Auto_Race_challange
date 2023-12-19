@@ -1,0 +1,2 @@
+./data/data_for_competition/train/images/*.jpg
+./data/data_for_competition/val/images/*.jpg
