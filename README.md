@@ -3,3 +3,12 @@
 <p></p>
 <img src='img/full_track.png'>
 <h3>How to download and run</h3>
+<ul>
+    <li><code>cd ~/ws</code></li>
+    <li><code>colcon build --symlink-install --packages-select robot_move robot_description robot_bringup </code></li>
+    <li><code>source install/setup.bash</code></li>
+    <li><code>ros2 launch robot_bringup autorace_2023.launch.py</code></li>
+    <li><code>ros2 run referee_console mission_autorace_2023_referee</code></li>
+    <li><code>ros2 run referee_console mission_autorace_2023_referee</code></li>
+    <li><code>ros2 run referee_console mission_autorace_2023_referee</code></li>
+</ul>
