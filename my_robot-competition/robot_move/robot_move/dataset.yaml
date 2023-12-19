@@ -1,0 +1,19 @@
+path: data_model  # dataset root dir
+train: train  # train images (relative to 'path') 128 images
+val: val  # val images (relative to 'path') 128 images
+test: test # test images (optional)
+
+# Classes
+names:
+  0: red
+  1: green 
+  2: yellow
+  3: stage_1
+  4: left
+  5: right
+  6: stage_3
+  7: stage_2
+  8: car
+  9: man
+  10: stage_4
+  11: stage_5
