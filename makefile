@@ -4,7 +4,6 @@ add_files:
 
 avg_commit:
 	git add *
-	git rm *.jpg
 	git commit -m "Update"
 	git push
 
