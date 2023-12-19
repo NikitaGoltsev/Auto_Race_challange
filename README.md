@@ -12,3 +12,6 @@
     <li><code>ros2 run referee_console mission_autorace_2023_referee</code></li>
     <li><code>ros2 run referee_console mission_autorace_2023_referee</code></li>
 </ul>
+
+<h2>Cloning: https://github.com/NikitaGoltsev/Auto_Race_challange.git</h2>
+<h2>Requirements pip install -r requirements.txt</h2>
