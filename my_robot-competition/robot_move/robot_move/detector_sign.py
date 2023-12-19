@@ -14,6 +14,7 @@ import shutil
 from math import pi
 from message_filters import ApproximateTimeSynchronizer, Subscriber
 import torch
+import os
 
 class Controller(Node):
 	def __init__(self):
@@ -23,7 +24,7 @@ class Controller(Node):
 		self.bool = Bool()
 		self.color_image = None
 		self.depth_image = None
-		self.publisher = self.create_publisher(Twist, '/cmd_vel', 15)
+		self.publisher = self.create_publisher(Twist, '/cmd_vel', 20)
 
 		self.yolo_publisher = self.create_publisher(Bool, '/comand', 20)
 
@@ -31,12 +32,12 @@ class Controller(Node):
 		color_sub = Subscriber(self, Image, '/color/image')
 		depth_sub = Subscriber(self, Image, '/depth/image')
 
-		self.work_direct = '/home/sear/ws/src/my_robot-competition/robot_move/robot_move/'
-		direct = self.work_direct+'yolov5/runs/train/exp/weights/best.pt' 
+		self.work_direct = os.getcwd() +'/src/my_robot-competition/robot_move/robot_move/'
+		weight_direct = self.work_direct+'best.pt' 
 
-		self.model = torch.hub.load('ultralytics/yolov5', 'custom', direct)
+		self.model = torch.hub.load('ultralytics/yolov5', 'custom', weight_direct)
 
-		self.model.load_state_dict(torch.load(direct), strict=False)
+		self.model.load_state_dict(torch.load(weight_direct), strict=False)
 
   		# Создаем синхронизатор с приближенным временем
 		ats = ApproximateTimeSynchronizer([color_sub, depth_sub], queue_size=5, slop=0.1)
@@ -130,7 +131,7 @@ class Controller(Node):
 				d = class_distances[decoder_class['left']]
 				conf = class_conf[decoder_class['left']]
 				self.get_logger().info(f'Left, {d}, {conf}')
-				self.twist.angular.z = float(angle)
+				self.twist.angular.z = float(angle/2)
 				self.twist.linear.x = float(0.05)
 				self.bool.data = False
 				self.yolo_publisher.publish(self.bool)

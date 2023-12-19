@@ -80,18 +80,11 @@ class DetectLane(Node):
 		try:
 			if yellow_fraction > 3000:
 				self.left_fitx, self.left_fit = self.fit_from_lines(self.left_fit, cv_yellow_lane)
-				self.mov_avg_left = np.append(self.mov_avg_left, np.array([self.left_fit]), axis=0)
-				self.last_known_left_direction = self.left_fitx
-			else:
-				self.left_fitx = self.last_known_left_direction
+				self.mov_avg_left = np.append(self.mov_avg_left,np.array([self.left_fit]), axis=0)
 
 			if white_fraction > 3000:
 				self.right_fitx, self.right_fit = self.fit_from_lines(self.right_fit, cv_white_lane)
-				self.mov_avg_right = np.append(self.mov_avg_right, np.array([self.right_fit]), axis=0)
-				self.last_known_right_direction = self.right_fitx
-			else:
-				self.right_fitx = self.last_known_right_direction
-
+				self.mov_avg_right = np.append(self.mov_avg_right,np.array([self.right_fit]), axis=0)
 		except:
 			if yellow_fraction > 3000:
 				self.left_fitx, self.left_fit = self.sliding_windown(cv_yellow_lane, 'left')

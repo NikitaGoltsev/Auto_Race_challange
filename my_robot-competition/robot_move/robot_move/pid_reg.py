@@ -18,11 +18,11 @@ class Controller(Node):
             				parameters=[
 					('Kp', 0.750),
 					('Ki', 0.042),
-					('Kd', 0.001),
-					('desiredV', 0.15),])
+					('Kd', 0.002),
+					('desiredV', 0.2),])
 					
 		self.publisher_ = self.create_publisher(Twist, '/cmd_vel', 10)
-		self.subscription = self.create_subscription(Float64, '/detect/line', self.start_PID, 15)
+		self.subscription = self.create_subscription(Float64, '/detect/line', self.start_PID, 20)
 		self.subscript_traffic = self.create_subscription(Image, '/color/image', self.traffic_light, 5)
 
 		self.yolo_traffic = self.create_subscription(Bool, '/comand', self.block, 20)
